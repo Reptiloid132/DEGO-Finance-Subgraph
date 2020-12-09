@@ -1,0 +1,37 @@
+type _eveSetRate @entity {
+  id: ID!
+  count: BigInt!
+  burn_rate: BigInt! # uint256
+  reward_rate: BigInt! # uint256
+}
+
+type _Transfer @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt
+}
+
+type _Mint @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt
+}
+
+type _Approval @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes!
+  spender: Bytes!
+  value: BigInt
+}
+
+type _GovernanceTransferred @entity {
+  id: ID!
+  count: BigInt!
+  previousOwner: Bytes!
+  newOwner: Bytes!
+}

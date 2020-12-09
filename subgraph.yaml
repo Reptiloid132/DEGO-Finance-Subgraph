@@ -1,0 +1,39 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: DegoToken
+    network: mainnet
+    source:
+      address: "0x88EF27e69108B2633F8E1C184CC37940A075cC02"
+      abi: DegoToken
+      startBlock: 10835762
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - eveSetRate
+        - eveRewardPool
+        - Transfer
+        - Mint
+        - Approval
+        - GovernanceTransferred
+      abis:
+        - name: DegoToken
+          file: ./abis/DegoToken.json
+      eventHandlers:
+        - event: eveSetRate(uint256,uint256)
+          handler: handleeveSetRate
+        - event: eveRewardPool(address)
+          handler: handleeveRewardPool
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Mint(indexed address,indexed address,uint256)
+          handler: handleMint
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: GovernanceTransferred(indexed address,indexed address)
+          handler: handleGovernanceTransferred
+      file: ./src/mapping.ts
